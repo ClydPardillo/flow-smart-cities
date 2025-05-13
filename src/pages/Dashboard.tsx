@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { Bell, Settings, MapPin, Gauge, ChartBar, CircleAlert } from "lucide-react";
+import { Bell, Settings, MapPin, Route, Server, Network } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import TrafficMap from "@/components/dashboard/TrafficMap";
 import MetricsPanel from "@/components/dashboard/MetricsPanel";
@@ -39,95 +39,99 @@ const Dashboard = () => {
         </div>
 
         {/* Main Navigation */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="container px-4">
-          <TabsList className="grid w-full grid-cols-4 h-10 mb-2">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="intersections">Intersections</TabsTrigger>
-            <TabsTrigger value="ai-insights">AI Insights</TabsTrigger>
-            <TabsTrigger value="settings">Settings</TabsTrigger>
-          </TabsList>
-        </Tabs>
+        <div className="container px-4">
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
+            <TabsList className="grid w-full grid-cols-4 h-10 mb-2">
+              <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="intersections">Intersections</TabsTrigger>
+              <TabsTrigger value="ai-insights">AI Insights</TabsTrigger>
+              <TabsTrigger value="settings">Settings</TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
       </header>
 
       {/* Main Content */}
       <main className="container pb-12 px-4">
-        <TabsContent value="overview" className="space-y-6 mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="col-span-1 md:col-span-2 space-y-6">
-              {/* Map Section */}
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle>Live Traffic Map</CardTitle>
-                  <CardDescription>Real-time traffic flow and congestion monitoring</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <TrafficMap />
-                </CardContent>
-              </Card>
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
+          <TabsContent value="overview" className="space-y-6 mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="col-span-1 md:col-span-2 space-y-6">
+                {/* Map Section */}
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle>Live Traffic Map</CardTitle>
+                    <CardDescription>Real-time traffic flow and congestion monitoring</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <TrafficMap />
+                  </CardContent>
+                </Card>
+                
+                {/* Performance Charts */}
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle>Performance Metrics</CardTitle>
+                    <CardDescription>Historical trends and optimization results</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <PerformanceCharts />
+                  </CardContent>
+                </Card>
+              </div>
               
-              {/* Performance Charts */}
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle>Performance Metrics</CardTitle>
-                  <CardDescription>Historical trends and optimization results</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <PerformanceCharts />
-                </CardContent>
-              </Card>
+              <div className="space-y-6">
+                {/* Metrics Panel */}
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle>Key Metrics</CardTitle>
+                    <CardDescription>Current traffic status</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <MetricsPanel />
+                  </CardContent>
+                </Card>
+                
+                {/* Control Panel */}
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle>Control Panel</CardTitle>
+                    <CardDescription>Manual signal override</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ControlPanel />
+                  </CardContent>
+                </Card>
+                
+                {/* Notifications */}
+                <Card>
+                  <CardHeader className="pb-2 flex flex-row items-center justify-between">
+                    <div>
+                      <CardTitle>Notifications</CardTitle>
+                      <CardDescription>Alerts and incidents</CardDescription>
+                    </div>
+                    <Bell className="h-5 w-5 text-red-500" />
+                  </CardHeader>
+                  <CardContent>
+                    <NotificationPanel />
+                  </CardContent>
+                </Card>
+              </div>
             </div>
-            
-            <div className="space-y-6">
-              {/* Metrics Panel */}
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle>Key Metrics</CardTitle>
-                  <CardDescription>Current traffic status</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <MetricsPanel />
-                </CardContent>
-              </Card>
-              
-              {/* Control Panel */}
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle>Control Panel</CardTitle>
-                  <CardDescription>Manual signal override</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ControlPanel />
-                </CardContent>
-              </Card>
-              
-              {/* Notifications */}
-              <Card>
-                <CardHeader className="pb-2 flex flex-row items-center justify-between">
-                  <div>
-                    <CardTitle>Notifications</CardTitle>
-                    <CardDescription>Alerts and incidents</CardDescription>
-                  </div>
-                  <CircleAlert className="h-5 w-5 text-red-500" />
-                </CardHeader>
-                <CardContent>
-                  <NotificationPanel />
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </TabsContent>
-        
-        <TabsContent value="intersections">
-          <IntersectionsView />
-        </TabsContent>
-        
-        <TabsContent value="ai-insights">
-          <AiInsights />
-        </TabsContent>
-        
-        <TabsContent value="settings">
-          <SettingsView />
-        </TabsContent>
+          </TabsContent>
+          
+          <TabsContent value="intersections">
+            <IntersectionsView />
+          </TabsContent>
+          
+          <TabsContent value="ai-insights">
+            <AiInsights />
+          </TabsContent>
+          
+          <TabsContent value="settings">
+            <SettingsView />
+          </TabsContent>
+        </Tabs>
       </main>
     </div>
   );

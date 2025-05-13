@@ -1,5 +1,5 @@
 
-import { Gauge, ChartBar } from "lucide-react";
+import { Gauge, Route } from "lucide-react";
 
 const METRICS = [
   {
@@ -7,7 +7,7 @@ const METRICS = [
     value: "2,458",
     change: "+12%",
     status: "increase",
-    icon: ChartBar,
+    icon: Route,
   },
   {
     label: "Average Speed",
@@ -21,7 +21,7 @@ const METRICS = [
     value: "45 sec",
     change: "-15%",
     status: "decrease",
-    icon: ChartBar,
+    icon: Route,
   },
 ];
 
