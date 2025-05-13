@@ -1,5 +1,5 @@
 
-import { Gauge, Route } from "lucide-react";
+import { Gauge, Route, Clock } from "lucide-react";
 
 const METRICS = [
   {
@@ -21,7 +21,7 @@ const METRICS = [
     value: "45 sec",
     change: "-15%",
     status: "decrease",
-    icon: Route,
+    icon: Clock,
   },
 ];
 
@@ -29,27 +29,27 @@ const MetricsPanel = () => {
   return (
     <div className="space-y-4">
       {METRICS.map((metric) => (
-        <div key={metric.label} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+        <div key={metric.label} className="flex items-center justify-between p-3 bg-white rounded-lg shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
           <div className="flex items-center">
-            <div className="h-10 w-10 rounded-full bg-smartcity-blue/10 flex items-center justify-center mr-3">
-              <metric.icon className="h-5 w-5 text-smartcity-blue" />
+            <div className="h-10 w-10 rounded-full bg-smartcity-teal/10 flex items-center justify-center mr-3">
+              <metric.icon className="h-5 w-5 text-smartcity-teal" />
             </div>
             <div>
-              <p className="text-sm font-medium">{metric.label}</p>
-              <p className="text-2xl font-bold">{metric.value}</p>
+              <p className="text-sm font-medium text-smartcity-darkgray">{metric.label}</p>
+              <p className="text-2xl font-bold text-smartcity-blue">{metric.value}</p>
             </div>
           </div>
-          <div className={`text-sm font-medium ${metric.status === "increase" ? "text-green-600" : "text-red-600"}`}>
+          <div className={`text-sm font-medium ${metric.status === "increase" ? "text-smartcity-green" : "text-red-500"}`}>
             {metric.change}
           </div>
         </div>
       ))}
-      <div className="bg-green-50 border border-green-200 rounded-lg p-3 mt-4">
-        <p className="text-sm font-medium text-green-800">System Efficiency</p>
-        <div className="mt-2 relative h-2 bg-green-200 rounded-full">
-          <div className="absolute top-0 left-0 h-full w-[85%] bg-green-500 rounded-full"></div>
+      <div className="bg-white border border-slate-100 rounded-lg p-4 mt-4 shadow-sm">
+        <p className="text-sm font-medium text-smartcity-blue">System Efficiency</p>
+        <div className="mt-2 relative h-2 bg-slate-100 rounded-full">
+          <div className="absolute top-0 left-0 h-full w-[85%] bg-smartcity-green rounded-full"></div>
         </div>
-        <div className="flex justify-between mt-1 text-xs text-green-800">
+        <div className="flex justify-between mt-1 text-xs text-smartcity-darkgray">
           <span>0%</span>
           <span className="font-medium">85%</span>
           <span>100%</span>
