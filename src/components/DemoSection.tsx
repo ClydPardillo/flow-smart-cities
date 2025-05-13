@@ -1,6 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import ScrollFadeIn from './ScrollFadeIn';
+import { Play } from 'lucide-react';
 
 const DemoSection = () => {
   return (
@@ -27,10 +28,7 @@ const DemoSection = () => {
               <div className="absolute inset-0 bg-smartcity-blue/10 flex items-center justify-center">
                 <div className="text-center">
                   <div className="w-20 h-20 rounded-full bg-smartcity-blue flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-smartcity-blue/90 transition-colors">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
+                    <Play className="w-8 h-8 text-white" />
                   </div>
                   <p className="text-smartcity-blue font-medium">Play Demo Video</p>
                 </div>
@@ -75,7 +73,7 @@ const DemoSection = () => {
 
         <ScrollFadeIn delay={300}>
           <div className="mt-12 text-center">
-            <Button className="bg-smartcity-blue hover:bg-smartcity-blue/90 text-white">
+            <Button className="bg-smartcity-blue hover:bg-smartcity-blue/90 text-white font-medium">
               Request Full Demo
             </Button>
           </div>
